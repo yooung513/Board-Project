@@ -1,0 +1,210 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi900';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+	    font-weight: 900;
+	    font-display: swap;
+	}
+	
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	.container {
+		width: 1000px; 
+		height: 650px;
+	}
+	
+	.titleContainer {
+		width: 1000px;
+		height: 70px;
+		font-family: 'Paperozi900';
+		font-size: 30px;
+		text-align: center;
+		margin-top: 35px;
+		
+	}
+	
+	.searchContainer {
+		width: 1000px;
+		height: 50px;
+		align-content: center;
+	}
+	
+	.searchIpt {
+		font-family: 'Paperozi400';
+		width: 500px;	
+		height: 35px;
+		vertical-align: bottom;
+		border: 2px solid rgb(73, 73, 72);
+    	border-radius: 5px;
+    	padding-left: 10px;
+		box-sizing: border-box;
+		margin: 0 10px 0 145px;
+	}
+	
+	.searchBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		background-color: rgb(227, 6, 19);
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.searchBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	.deptContainer {
+		width: 1000px;
+		height: 400px;
+		overflow: auto;
+	}
+	
+	ul {
+		list-style-type: none;
+		padding-left: 20px;
+		padding-right: 20px;
+		text-decoration-line: underline;
+		text-underline-offset: 3px;
+	}
+	
+	li {
+		cursor: pointer;
+		padding-left: 5px 0;	
+		margin-top: 10px;
+		text-decoration-line: underline;
+		text-underline-offset: 3px;
+	}
+	
+	.leaf:hover {
+		background-color: rgb(217, 217, 217);
+	}
+	
+	/* 부모/접기 아이콘 */
+	.caret::before {
+		content: "▶";
+		color: rgb(73, 73, 72);
+		display:inline-block;
+		margin-right: 6px;
+		transition: 0.2s;
+	}
+	
+	.caret-down::before {
+		transform: rotate(90deg);
+	}
+	
+	.nested {
+		display: none;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	
+	.active {
+		display: block;
+	}
+	
+	.highlight {
+		background-color: rgb(217, 217, 217);
+	}
+	
+	.deptContainer {
+		width: 1000px;
+		height: 400px;
+		margin-top: 10px;
+	}
+	
+	.treeContainer {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: 20px;
+		margin: 0 145px;
+	}
+	
+	.leaf::before {
+		content: "-";
+		color: rgb(73, 73, 72);
+		display:inline-block;
+		margin-right: 6px;
+	}
+	
+	.noResult {
+		display: none;
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: 20px;
+    	text-align: center;
+	}
+	
+	.btnContainer {
+		width: 1000px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		margin-top: 10px;
+		position: sticky;
+		bottom: 0;
+	}
+	
+	.inputBtn, .cancelBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.inputBtn {
+		background-color: rgb(227, 6, 19);
+	}
+	
+	.inputBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	.cancelBtn {
+		background-color: rgb(196, 194, 194);
+		margin-right: 15px;
+	}
+	
+	.cancelBtn:hover {
+	 	background-color: rgb(73, 73, 72);
+	}
+	
+	.notionContainer {
+		width: 1000px;
+		height: 50px;
+		font-family: 'Paperozi400';
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	
+	.titleP:hover {
+		cursor: pointer;
+	}

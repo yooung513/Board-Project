@@ -1,0 +1,278 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+	
+	.container {
+		width: 1800px;
+		height: 800px;
+	}
+	
+	.searchContainer {
+		width: 1800px;
+		height: 50px;
+		align-content: center;
+		background-color: rgb(217, 217, 217);
+	}
+	
+	.keywordContainer {
+		float: right;
+		margin-right: 50px;
+	}
+	
+	.sortContainer {
+		width: 1800px;
+		height: 100px;
+		align-content: center;
+	}
+	
+	.boardContainer {
+		width: 1700px;
+		min-height: 550px;
+		margin: 0 50px;
+		border: 2px solid rgb(73, 73, 72);
+		overflow: hidden;
+	}
+	
+	.btnContainer {
+		width: 1800px;
+		height: 50px;
+		align-content: center;
+	}
+	
+	.pageContainer {
+		width: 1000px;
+		height: 50px;
+		margin: 0 400px;
+		text-align: center;
+		align-content: center;
+	}
+	
+	.inputBox {
+		font-family: 'Paperozi400';
+		font-size: 19px;
+		border: 0px;
+    	border-radius: 5px;
+    	box-sizing: border-box;
+		vertical-align: bottom;
+		height: 30px;
+	}
+	
+	#keyword {
+		width: 300px;
+		margin: 0 10px;
+		padding-left: 10px;
+	}
+	
+	#keywordType, #sortSel {
+		justify-content: between;
+		width: 150px;
+		text-align: center;
+	}
+	
+	#sortSel {
+		border: 2px solid rgb(217, 217, 217);
+		margin-left: 50px;
+		margin-top: 40px; 
+	}
+	
+	.keywordBtn, .writeBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	background-color: rgb(227, 6, 19);
+    	color: rgb(255, 255, 255);
+    	width: 150px;
+		height: 30px;
+		border: 0px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.keywordBtn:hover, .writeBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	table {
+		font-family: 'Paperozi400';
+		font-size: 19px;
+		width: 1700px;
+		border-collapse: collapse;
+		border-style: hidden;
+	}
+	
+	.tNum {
+		width: 100px;
+		text-align: center;
+	}
+	
+	.tTitle {
+		width: 800px;
+		padding: 10px;
+	}
+	
+	.tWriter {
+		width: 400px;
+		text-align: center;
+	}
+	
+	.tDate, .tRcm {
+		width: 200px;
+		text-align: center;
+	}
+	
+	.boardTable {
+	    font-family: 'Paperozi400';
+	    font-size: 19px;
+	    width: 1700px;
+	    border-collapse: collapse;
+	}
+	
+	.boardTable th {
+	    font-weight: bold;
+	    height: 50px;
+	    background-color: rgb(73, 73, 72);
+	    color: rgb(255, 255, 255);
+	    border: 1px dotted rgb(255, 255, 255);
+	}
+	
+	.boardTable td {
+	    height: 50px;
+	    border: 1px dotted rgb(73, 73, 72);
+	}
+	
+	.boardTable th, .boardTable td {
+	    border-left: none;
+	    border-right: none;
+	}
+	
+	.pagingBox {
+		font-family: 'Paperozi400';
+	}
+	
+	.writeBtn {
+		float: right;
+		margin-top: 10px;
+		margin-right: 50px;
+	}
+	
+	a {
+		color: black;
+		text-decoration: underline;
+	}
+	
+	a:hover {
+		text-decoration: underline;
+	}
+	
+	.boardTable td.tTitle {
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	
+	.boardTable td.tTitle:hover {
+		cursor: pointer;
+		font-weight: bold;
+	}
+	
+	.dateRange {
+		font-family: 'Paperozi400';
+		font-size: 19px;
+		border: 0px;
+    	border-radius: 5px;
+    	box-sizing: border-box;
+		vertical-align: bottom;
+		width: 300px;
+		height: 30px;
+		text-align: center;
+		cursor: pointer;
+		margin-right: 10px;
+	}
+	
+	.noResult {
+		text-align: center;
+		padding: 50px;
+	}
+	
+	
+	.krds-pagination {
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    gap: 8px;
+	    margin-top: 30px;
+	}
+	
+	.page-navi {
+		font-family: 'Paperozi400';
+	    padding: 8px 16px;
+	    border-radius: 4px;
+	    text-decoration: none;
+	    color: rgb(73, 73, 72);
+	    cursor: pointer;
+	}
+	
+	.page-navi:hover:not(.disabled) {
+	    background-color: rgb(217, 217, 217);
+	    color: rgb(73, 73, 72);
+	}
+	
+	.page-navi.disabled {
+	    color: rgb(73, 73, 72);
+	    cursor: default;
+	}
+	
+	.page-links {
+	    display: flex;
+	    gap: 4px;
+	}
+	
+	.page-link {
+	    min-width: 36px;
+	    height: 36px;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    border-radius: 4px;
+	    text-decoration: none;
+	    color: rgb(73, 73, 72);
+	}
+	
+	.page-link:hover:not(.active):not(.link-dot) {
+	    background-color: rgb(217, 217, 217);
+	    color: rgb(73, 73, 72);
+	}
+	
+	.page-link.active {
+	    background-color: rgb(227, 6, 19);
+	    color: rgb(255, 255, 255);
+	}
+	
+	.page-link.link-dot::before {
+	    content: "...";
+	}
+	
+	.sr-only {
+	    position: absolute;
+	    width: 1px;
+	    height: 1px;
+	    padding: 0;
+	    margin: -1px;
+	    overflow: hidden;
+	    clip: rect(0, 0, 0, 0);
+	    border: 0;
+	}
+	
+	.page-navi, .page-link {
+	    text-decoration: none;
+	}
+	
+	.page-navi:hover, .page-link:hover {
+	    text-decoration: none;
+	}

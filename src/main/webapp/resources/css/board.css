@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+	
+	.container {
+		width: 1800px;
+	}
+	
+	.emptyContainer {
+		width: 1800px;
+		height: 50px;
+		background-color: rgb(217, 217, 217);
+	}
+	
+	.boardContainer {
+		width: 1700px;
+		margin: 50px 50px 0 50px;
+	}
+	
+	.btnContainer {
+		width: 1700px;
+		height: 50px;
+		margin: 0 50px;
+	}
+	
+	.commentContainer {
+		width: 1800px;
+		height: 1000px;
+		
+	}
+	
+	.insertCmtContainer {
+		width: 1700px;
+		margin: 50px;
+	}
+	
+	.readCmtContainer {
+		width: 1700px;
+		margin: 50px;
+	    margin-top: 100px;
+	}
+	
+	table, th, td {
+		font-family: 'Paperozi400';
+		font-size: 20px;
+		width: 1700px;
+		border-collapse: collapse;
+	}
+	
+	tr {
+		border-top: 2px solid rgb(73, 73, 72);
+		border-bottom: 2px solid rgb(73, 73, 72);
+		border-collapse: collapse;
+	}
+	
+	td {
+		height: 50px;
+		padding: 10px;
+	}
+	
+	.tInner {
+		border-right: 2px solid rgb(73, 73, 72);
+	}
+	
+	.tContent {
+		height: 500px;
+		padding: 20px;
+		vertical-align: top;
+		line-height: 30px;
+	}
+	
+	.rcmBtn, .cmtBtn, .deleteBtn, .updateBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+		float: right;
+		margin-top: 10px;
+	}
+	
+	.rcmBtn, .cmtBtn, .updateBtn {
+		background-color: rgb(227, 6, 19);
+	}
+	
+	.rcmBtn:hover, .cmtBtn:hover, .updateBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	.deleteBtn {
+		background-color: rgb(196, 194, 194);
+	    margin: 10px;
+	}
+	
+	.deleteBtn:hover {
+		background-color: rgb(73, 73, 72);
+	}
+	
+	.cmtText {
+		font-family: 'Paperozi400';
+    	font-size: 20px;
+		width: 1700px;
+		height: 100px;
+		line-height: 30px;
+		resize: none;
+		border: 2px solid rgb(217, 217, 217);
+		border-radius: 10px;
+		padding: 10px;
+	}
+	
+	.readCmtText {
+		font-size: 20px;
+		height: 80px;
+		text-align: left;
+    	padding: 20px 10px;
+    	font-weight: bold;
+    	
+	}
+	
+	.readCmtWriter {
+		font-size: 20px;
+		height: 50px;
+		text-align: left;
+    	padding-left: 10px;
+	}
+	
+	.dateSpan {
+		font-size: 15px;
+		vertical-align: bottom;
+	}
+		
+	.cmtItem {
+		font-family: 'Paperozi400';
+		width:1700px;
+		height: 150px;
+		border-top: 2px solid rgb(217, 217, 217);
+		border-bottom: 2px solid rgb(217, 217, 217);
+	    padding: 20px 0px 20px 10px;
+
+	}
+	.cmtContent {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.readCmtText {
+		font-weight: bold;
+		flex: 1;
+	}
+	
+	.cmtWriter {
+		margin-top: 10px;
+	}
+	
+	.editCmtText {
+		font-family: 'Paperozi400';
+		font-size: 20px;
+		width: 100%;
+		height: 80px;
+		padding: 10px;
+		border: 2px solid rgb(73, 73, 72);
+		border-radius: 5px;
+		resize: none;
+		flex: 1;
+	}
+	

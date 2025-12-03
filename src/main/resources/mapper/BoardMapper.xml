@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kdn.project.mapper.BoardMapper">
+
+	<select id="selectByDeptCode" parameterType="Long" resultType="com.kdn.project.domain.DepartmentCodeVO">
+		SELECT  DEPT_CODE
+			   ,DEPT_NAME
+			   ,PAR_DEPT_CODE
+		  FROM TB_DEPARTMENT_CODE
+		 WHERE DEPT_CODE = #{deptCode}
+	</select>
+	
+	<select id="selectByRankCode" parameterType="Long" resultType="com.kdn.project.domain.RankCodeVO">
+		SELECT  RANK_CODE
+			   ,RANK_NAME
+		  FROM TB_RANK_CODE
+		 WHERE RANK_CODE = #{rankCod}
+	</select>
+	
+	<insert id="insertBoard" parameterType="com.kdn.project.dto.BoardDTO">
+		INSERT INTO TB_BOARD (
+							       TITLE
+							      ,CONTENT
+							      ,USER_ID
+							      ,USE_FLAG
+						      <if test=" deptCode != null and deptCode != '' ">
+								  ,DEPT_CODE
+							  </if>
+							  <if test=" rankCode != null and rankCode != '' ">
+								  ,RANK_CODE
+							  </if>
+							  	  ,CREATED_AT
+							  )
+					  VALUES (
+					  			   #{title}
+					  			  ,#{content}
+					  			  ,#{userId}
+					  			  ,'Y'
+					  		  <if test=" deptCode != null and deptCode != '' ">
+								  ,#{deptCode}
+							  </if>
+							  <if test=" rankCode != null and rankCode != '' ">
+								  ,#{rankCode}
+							  </if>
+							  	  ,now()
+							  )
+	</insert>
+	
+	
+	<select id="selectBoardCount" parameterType="com.kdn.project.dto.SearchDTO" resultType="int">
+		SELECT COUNT(B.BOARD_ID)
+		  FROM TB_BOARD B INNER JOIN TB_USER U
+		  						  ON B.USER_ID = U.USER_ID
+		 WHERE USE_FLAG = 'Y'
+		   AND DATE( COALESCE(B.UPDATED_AT, B.CREATED_AT) ) BETWEEN #{startDate} AND #{endDate}
+		   <if test=" keyword != null and keyword !='' ">
+		   		<choose>
+		   			<when test=" keywordType == 'title' ">
+		   				AND B.TITLE LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<when test=" keywordType == 'writer' ">
+		   				AND U.NAME LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<when test=" keywordType == 'content' ">
+		   				AND B.CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<otherwise>
+		   				AND (
+		   							B.TITLE LIKE CONCAT('%', #{keyword}, '%')
+		   						OR  U.NAME LIKE CONCAT('%', #{keyword}, '%')
+		   						OR  B.CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		   					)
+		   			</otherwise>
+		   		</choose>
+		   </if>
+	</select>
+	
+	
+	<select id="selectBoardList" parameterType="com.kdn.project.dto.SearchDTO" resultType="com.kdn.project.dto.BoardListDTO">
+		SELECT  B.BOARD_ID
+			   ,B.TITLE
+			   ,B.CONTENT
+			   ,B.USER_ID
+			   ,U.NAME as USER_NAME
+			   ,D.DEPT_NAME
+			   ,R.RANK_NAME
+			   ,COALESCE(B.UPDATED_AT, B.CREATED_AT) AS DISPLAYDATE
+			   ,CASE
+			   		WHEN B.UPDATED_AT IS NULL THEN 0
+			   		ELSE 1
+			   	END AS ISUPDATED
+			   ,COUNT(REC.USER_ID) AS RECOMMENDATION
+		  FROM  TB_BOARD B 	INNER JOIN TB_USER U
+		  							ON B.USER_ID = U.USER_ID
+		  					LEFT JOIN TB_DEPARTMENT_CODE D
+		  						   ON B.DEPT_CODE = D.DEPT_CODE
+		  					LEFT JOIN TB_RANK_CODE R
+		  						   ON B.RANK_CODE = R.RANK_CODE
+		  					LEFT JOIN TB_RECOMMENDATION REC
+		  						   ON B.BOARD_ID = REC.BOARD_ID
+		 WHERE B.USE_FLAG = 'Y'
+		   AND DATE( COALESCE(B.UPDATED_AT, B.CREATED_AT) ) BETWEEN #{startDate} AND #{endDate}
+		   
+		   <!-- 키워드 검색 -->
+		   <if test=" keyword != null and keyword !='' ">
+		   		<choose>
+		   			<when test=" keywordType == 'title' ">
+		   				AND B.TITLE LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<when test=" keywordType == 'writer' ">
+		   				AND U.NAME LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<when test=" keywordType == 'content' ">
+		   				AND B.CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		   			</when>
+		   			<otherwise>
+		   				AND (
+		   							B.TITLE LIKE CONCAT('%', #{keyword}, '%')
+		   						OR  U.NAME LIKE CONCAT('%', #{keyword}, '%')
+		   						OR  B.CONTENT LIKE CONCAT('%', #{keyword}, '%')
+		   					)
+		   			</otherwise>
+		   		</choose>
+		   </if>
+		 
+		 GROUP BY 	B.BOARD_ID, B.TITLE, B.CONTENT,
+	  		   		U.NAME, D.DEPT_NAME, R.RANK_NAME,
+	  		   		DISPLAYDATE, ISUPDATED
+	  	
+	  	   <!-- 정렬 -->   		 
+	  	   <choose>
+	  	   		<when test="sort == 'recommend'">
+	  	   			ORDER BY RECOMMENDATION DESC, DISPLAYDATE DESC 
+	  	   		</when>
+	  	   		<when test="sort == 'oldest'">
+	  	   			ORDER BY DISPLAYDATE ASC 
+	  	   		</when>
+	  	   		<otherwise>
+	  	   			ORDER BY DISPLAYDATE DESC 
+	  	   		</otherwise>
+	  	   </choose>
+	  	   
+	  	   <!-- 페이징 -->
+	  	   LIMIT #{pageSize} OFFSET #{offset}
+	</select>
+	
+	
+	<select id="selectBoardById" parameterType="long" resultType="com.kdn.project.dto.BoardListDTO">
+		SELECT  B.BOARD_ID
+			   ,B.TITLE
+			   ,B.CONTENT
+			   ,B.USER_ID
+			   ,U.NAME as USER_NAME
+			   ,D.DEPT_NAME
+			   ,R.RANK_NAME
+			   ,COALESCE(B.UPDATED_AT, B.CREATED_AT) AS DISPLAYDATE
+			   ,CASE
+			   		WHEN B.UPDATED_AT IS NULL THEN 0
+			   		ELSE 1
+			   	END AS ISUPDATED
+			   ,COUNT(REC.USER_ID) AS RECOMMENDATION
+		  FROM  TB_BOARD B 	INNER JOIN TB_USER U
+		  							ON B.USER_ID = U.USER_ID
+		  					LEFT JOIN TB_DEPARTMENT_CODE D
+		  						   ON B.DEPT_CODE = D.DEPT_CODE
+		  					LEFT JOIN TB_RANK_CODE R
+		  						   ON B.RANK_CODE = R.RANK_CODE
+		  					LEFT JOIN TB_RECOMMENDATION REC
+		  						   ON B.BOARD_ID = REC.BOARD_ID
+		 WHERE B.USE_FLAG = 'Y'
+		   AND B.BOARD_ID = #{boardId}
+	  GROUP BY B.BOARD_ID, B.TITLE, B.CONTENT,
+ 		   	   U.NAME, D.DEPT_NAME, R.RANK_NAME,
+ 		   	   DISPLAYDATE, ISUPDATED
+	</select>
+	
+	
+	<update id="updateBoard" parameterType="com.kdn.project.dto.BoardDTO">
+		UPDATE  TB_BOARD
+		   SET  TITLE = #{title}
+			   ,CONTENT = #{content}
+			   <if test=" deptCode != null and deptCode != '' ">
+			   		,DEPT_CODE = #{deptCode}
+			   </if>
+			   <if test=" rankCode != null and rankCode != '' ">
+			   		,RANK_CODE = #{rankCode}
+			   </if> 
+			   ,UPDATED_AT = now()
+	 	 WHERE USE_FLAG = 'Y'
+	 	   AND BOARD_ID = #{boardId}	   	
+	</update>
+	
+	<update id="deleteBoard" parameterType="long">
+		UPDATE  TB_BOARD
+		   SET  USE_FLAG = 'N'
+			   ,UPDATED_AT = now()
+	 	 WHERE BOARD_ID = #{boardId}	   	
+	</update>
+	
+	
+	<insert id="insertComment" parameterType="com.kdn.project.dto.CommentDTO">
+		INSERT INTO TB_COMMENT (
+							       BOARD_ID
+							      ,USER_ID
+							      ,COMMENT
+							      ,USE_FLAG
+						      <if test=" deptCode != null and deptCode != '' ">
+								  ,DEPT_CODE
+							  </if>
+							  <if test=" rankCode != null and rankCode != '' ">
+								  ,RANK_CODE
+							  </if>
+							  	  ,CREATED_AT
+							  )
+					  VALUES (
+					  			   #{boardId}
+					  			  ,#{userId}
+					  			  ,#{comment}
+					  			  ,'Y'
+					  		  <if test=" deptCode != null and deptCode != '' ">
+								  ,#{deptCode}
+							  </if>
+							  <if test=" rankCode != null and rankCode != '' ">
+								  ,#{rankCode}
+							  </if>
+							  	  ,now()
+							  )
+	</insert>
+	
+	
+	<select id="selectComment" parameterType="long" resultType="com.kdn.project.dto.CommentListDTO">
+		SELECT  C.COMMENT_ID
+		       ,C.BOARD_ID
+		       ,C.USER_ID
+		       ,C.COMMENT
+		       ,U.NAME AS USER_NAME
+		       ,D.DEPT_NAME
+		       ,R.RANK_NAME
+		       ,COALESCE(C.UPDATED_AT, C.CREATED_AT) AS DISPLAYDATE
+		       ,CASE
+					WHEN C.UPDATED_AT IS NULL THEN 0
+		            ELSE 1
+				END AS ISUPDATED
+		  FROM TB_COMMENT C INNER JOIN TB_USER U
+									ON C.USER_ID = U.USER_ID
+							LEFT JOIN  TB_DEPARTMENT_CODE D
+									ON C.DEPT_CODE = D.DEPT_CODE
+							LEFT JOIN TB_RANK_CODE R
+									ON C.RANK_CODE = R.RANK_CODE
+		 WHERE C.USE_FLAG = 'Y'
+		   AND C.BOARD_ID = #{boardId}
+		ORDER BY DISPLAYDATE DESC
+	</select>
+	
+	
+	<update id="updateComment" parameterType="com.kdn.project.dto.CommentDTO">
+		UPDATE  TB_COMMENT
+		   SET  COMMENT = #{comment}
+		   		<if test=" deptCode != null and deptCode != '' ">
+			   		,DEPT_CODE = #{deptCode}
+			   	</if>
+			   	<if test=" rankCode != null and rankCode != '' ">
+			   		,RANK_CODE = #{rankCode}
+			   	</if> 
+			   ,UPDATED_AT = now()
+	 	 WHERE USE_FLAG = 'Y'
+	 	   AND COMMENT_ID = #{commentId}	   	
+	</update>
+	
+	<update id="deleteComment" parameterType="long">
+		UPDATE  TB_COMMENT
+		   SET  USE_FLAG = 'N'
+			   ,UPDATED_AT = now()
+	 	 WHERE COMMENT_ID = #{commentId}	   	
+	</update>
+	
+	<select id="isRecommeded" parameterType="long" resultType="int">
+		SELECT COUNT(BOARD_ID) AS CNT
+		  FROM TB_RECOMMENDATION
+		 WHERE BOARD_ID = #{boardId}
+		   AND USER_ID = #{userId}
+	</select>
+	
+	<insert id="insertRecommend" parameterType="long">
+		INSERT INTO TB_RECOMMENDATION (
+									      BOARD_ID
+									     ,USER_ID
+									     ,CREATED_AT  	
+									  )
+							   VALUES (
+							   			  #{boardId}
+							   			 ,#{userId}
+							   			 ,NOW()
+							   		  )
+	</insert>
+</mapper>

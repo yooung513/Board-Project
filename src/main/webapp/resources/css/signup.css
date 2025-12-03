@@ -1,0 +1,217 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi900';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+	    font-weight: 900;
+	    font-display: swap;
+	}
+	
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	.headerContainer {
+		width: 1800px;
+		height: 100px;
+	}
+	
+	.logo {
+		width: 250px;
+		margin: 20px 10px;
+	}
+
+	.container {
+		width: 1800px;
+		height: 800px;
+	}
+	
+	.titleContainer {
+		font-family: 'Paperozi900';
+		font-size: 50px;
+		width: 1800px;
+		height: 70px;
+		text-align: center;
+		align-content: center;
+		margin: 10px 0px 25px 0px;
+		color: rgb(73, 73, 72);
+	}
+	
+	.signupContainer {
+		width: 1800px;
+		height: 500px;
+	}
+	
+	.inputBox {
+		width: 1100px;
+		height: 35px;
+		line-height: 35px;
+		margin: 25px 350px;
+		color: rgb(73, 73, 72);
+		float: left;
+		display: flex;
+		align-items: center;
+	}
+	
+	.inputBox label {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+		font-size: large;
+		text-align: justify;
+		text-align-last: justify;
+		display: inline-block;
+		width : 200px;
+		height: 35px;
+		margin-right: 100px; 
+	}
+	
+	.inputBox label::after {
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+	
+	.requireBox {
+		margin-right: 10px;
+		color: rgb(227, 6, 19);
+	}
+	
+	/* ------------------------------
+	   입력 필드 공통
+	------------------------------ */
+	
+	input[type="text"], input[type="password"] {
+		font-family: 'Paperozi400';
+		font-size: large;
+		border: 2px solid rgb(217, 217, 217);
+    	border-radius: 5px;
+    	padding-left: 10px;
+    	box-sizing: border-box;
+		vertical-align: bottom;
+	}
+	
+	.inputLong {
+		width: 700px;
+		height: 35px;
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+	}
+	
+	.inputMedium {
+		width: 480px;
+		height: 35px;
+		margin-right: 20px;
+	}
+	
+	/* ------------------------------
+	   비밀번호 필드
+	------------------------------ */
+	
+	label#pwLabel, .pw {
+		margin-top: 10px;
+		margin-bottom: 35px;
+	}
+	
+	.guideContainer {
+		display: flex;
+		flex-direction: column;
+		margin-top: 10px;
+	}
+	
+	.guideText {
+		font-family: 'Paperozi400';
+	  	font-size: 14px;
+	  	color: rgb(150, 0, 0);
+	}
+	
+	/* ------------------------------
+	   버튼 스타일
+	------------------------------ */
+	
+	.inputBtn, .cancelBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.inputBtn {
+		background-color: rgb(227, 6, 19);
+	}
+	
+	.inputBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	.cancelBtn {
+		background-color: rgb(196, 194, 194);
+		margin-right: 15px;
+	}
+	
+	.cancelBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(73, 73, 72);
+	}
+	
+	.buttonBox {
+		margin: 50px 430px;
+		float: right;
+	}
+	
+	.phone, .email, .rank {
+		font-family: 'Paperozi400';
+		font-size: large;
+		vertical-align: bottom;
+		border: 2px solid rgb(217, 217, 217);
+    	border-radius: 5px;
+    	padding-left: 10px;
+		box-sizing: border-box;
+		height: 35px;
+	}
+		
+	.phoneText, .emailText {
+		display: inline-block;
+	}
+	
+	.phone {
+		width: 220px;
+		text-align: center;
+	}
+
+	.email {
+		width: 330px;
+	}
+			
+	.phoneText {
+		width: 8.7px;
+	}
+	
+	.emailText {
+		width: 28.7px;
+	}
+	
+	.rank {
+		width: 700px;
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		padding-top: 5px;
+	}
+	

@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi900';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');
+	    font-weight: 900;
+	    font-display: swap;
+	}
+	
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+	
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	
+	.container {
+		width: 1800px;
+		height: 950px;
+	}
+	
+	.mainContainer {
+		float: left;
+		width: 1000px;
+		height:	950px;
+	}
+	
+	.logoContainer {
+		width: 1000px;
+		height:	350px;
+		display: flex;
+  		align-items: center;
+  		justify-content: center;
+	}
+	
+	.loginContainer {
+		margin: 0 auto;
+		width: 1000px;
+    	height: 220px;
+    	margin-top: 80px;
+	}
+	
+	.signUpContainer {
+		width: 1000px;
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+	}
+
+	.inputBox {
+		width: 850px;	
+		height: 35px;
+		line-height: 35px;
+		margin: 25px 0px 25px 150px;
+		color: rgb(73, 73, 72);
+		float: left;
+		display: flex;
+		align-items: center;
+	}
+	
+	.inputBox label {
+		font-family: 'Paperozi900';
+		font-size: 30px;
+		text-align: justify;
+		text-align-last: justify;
+		display: inline-block;
+		width : 150px;
+		height: 35px;
+		margin-right: 50px; 
+	}
+	
+	.inputBox label::after {
+		content: '';
+		display: inline-block;
+		width: 100%;
+	}
+	
+	.inputBox input {
+		font-family: 'Paperozi400';
+		width: 450px;
+		height: 35px;
+		vertical-align: bottom;
+		border: 2px solid rgb(217, 217, 217);
+    	border-radius: 5px;
+    	padding-left: 10px;
+		box-sizing: border-box;
+		font-size: large;
+	}
+	
+	.loginBtnBox {
+		width: 1000px;
+		display: flex;
+		justify-content: flex-end;
+		margin: 25px 0px;
+		padding-right: 200px;
+	}
+	
+	.signUpBox {
+		width: 100px;
+		height: 35px;
+		float: right;
+		margin-right: 200px;
+		display: flex;
+		text-align: right;
+		justify-content: right;
+		align-items: center;
+	}
+	
+	.signUpBox a {
+		font-family: 'Paperozi400';
+		font-size: large;
+		color: rgb(73, 73, 72);
+		text-decoration: none;
+		cursor: pointer;
+	}
+	
+	.signUpBox a:hover {
+		text-decoration: underline;
+	}
+	
+	.loginBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		background-color: rgb(227, 6, 19);
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.loginBtn:hover {
+	  color: rgb(255, 255, 255);
+	  background-color: rgb(150, 4, 11);
+	}
+
+	.imageContainer {
+		float: left;
+		width: 800px;
+		height:	950px;
+	}
+	
+	.logo {
+		width : 300px;
+		margin-top: 150px;
+	}
+	

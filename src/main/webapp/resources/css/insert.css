@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+	@font-face {
+	    font-family: 'Paperozi400';
+	    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-4Regular.woff2') format('woff2');
+	    font-weight: 400;
+	    font-display: swap;
+	}
+
+	.container {
+		width: 1800px;
+		height: 800px;
+	}
+	
+	.emtpyContainer {
+		width: 1800px;
+		height: 50px;
+		background-color: rgb(217, 217, 217);
+	}
+	
+	.inputContainer {
+		width: 1700px;
+		height: 700px;
+		margin: 50px 50px 0 50px;
+		display: flex;
+	}
+	
+	.btnContainer {	
+		width: 1700px;
+		height: 50px;
+		float: right;
+		margin: 50px 50px 0 1280px;
+	}
+	
+	table, th, td {
+		font-family: 'Paperozi400';
+		width: 1700px;
+		height: 500px;
+		border: 2px solid rgb(73, 73, 72);
+		border-collapse: collapse;
+	}
+	
+	th {
+		width: 100px;
+		font-weight: bold;
+    	font-size: large;
+	}
+	
+	td {
+		padding: 10px;
+	}
+	
+	.tTitle, .tWriter {
+		height: 50px;
+	}
+	
+	.tInner {
+		font-family: 'Paperozi400';
+		font-size: large;
+		width: 100%;
+		height: 100%;
+		border: 0;
+		outline: none;
+	}
+	
+	textarea {
+		line-height: 30px;
+		resize: none;
+	}
+	
+	.insertBtn, .cancelBtn {
+		font-family: 'Paperozi400';
+		font-weight: bold;
+    	font-size: large;
+    	color: rgb(255, 255, 255);
+		width: 200px;
+		height: 35px;
+		border: 0px;
+		border-radius: 5px;
+		cursor: pointer;
+		transition: background-color 0.2s;
+	}
+	
+	.insertBtn {
+		background-color: rgb(227, 6, 19);
+	}
+	
+	.insertBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(150, 4, 11);
+	}
+	
+	.cancelBtn {
+		background-color: rgb(196, 194, 194);
+		margin-right: 15px;
+	}
+	
+	.cancelBtn:hover {
+		color: rgb(255, 255, 255);
+	 	background-color: rgb(73, 73, 72);
+	}

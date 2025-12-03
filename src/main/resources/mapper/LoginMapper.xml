@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kdn.project.mapper.LoginMapper">
+
+	<select id="selectCntKdnNum" parameterType="String" resultType="int">
+		SELECT COUNT(KDN_NUMBER)
+		  FROM TB_USER
+		 WHERE KDN_NUMBER = #{kdnNumber}
+	</select>
+	
+	<select id="selectRank" resultType="com.kdn.project.domain.RankCodeVO">
+		SELECT  RANK_CODE
+			   ,RANK_NAME
+		  FROM TB_RANK_CODE
+		 WHERE USE_FLAG = 'Y'
+		 ORDER BY RANK_SEQ 
+	</select>
+	
+	<select id="selectDept" resultType="com.kdn.project.domain.DepartmentCodeVO">
+		SELECT  DEPT_CODE
+			   ,DEPT_NAME
+			   ,PAR_DEPT_CODE
+		  FROM TB_DEPARTMENT_CODE
+		 WHERE USE_FLAG = 'Y'
+		 ORDER BY DEPT_CODE
+	</select>
+
+	<insert id="insertUser" parameterType="com.kdn.project.domain.UserVO">
+		INSERT INTO TB_USER (
+								KDN_NUMBER
+							   ,PASSWORD
+							   ,NAME
+							   ,PHONE
+							   ,EMAIL
+						   <if test=" deptCode != null and deptCode != '' ">
+							   ,DEPT_CODE
+						   </if>
+						   <if test=" rankCode != null and rankCode != '' ">
+							   ,RANK_CODE
+						   </if>
+							   ,ROLE
+							   ,CREATED_AT	
+						    )
+					VALUES (
+								#{kdnNumber}
+							   ,#{password}
+							   ,#{name}
+							   ,#{phone}
+							   ,#{email}
+						   <if test=" deptCode != null and deptCode != '' ">
+							   ,#{deptCode}
+						   </if>
+						   <if test=" rankCode != null and rankCode != '' ">
+							   ,#{rankCode}
+						   </if>
+							   ,#{role}		
+							   ,now()
+						    )
+	</insert>
+	
+	<select id="selectUserInfo" parameterType="String" resultType="com.kdn.project.domain.UserVO">
+		SELECT  USER_ID
+			   ,KDN_NUMBER
+			   ,PASSWORD
+			   ,NAME
+			   ,PHONE
+			   ,EMAIL
+			   ,DEPT_CODE
+			   ,RANK_CODE
+			   ,ROLE
+		  FROM TB_USER
+		 WHERE KDN_NUMBER = #{kdnNumber}
+	</select>
+</mapper>
