@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.3.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/update.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/update.css">
 </head>
 
@@ -53,5 +52,11 @@
 			</form>
 		</div>
 	</div>
+	
+	<script>
+		var user = "${sessionScope.user.name}";
+		var boardId = "${board.boardId }";
+	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/update.js"></script>
 </body>
 </html>

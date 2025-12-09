@@ -3,20 +3,6 @@ $(function() {
 	var selectedDeptName = "";
 	var isDragging = false;
 	
-	// 부서 리스트 
-	const deptList = [
-		<c:forEach var="dept" items="${deptList }" varStatus="status">
-			{
-				deptCode: "${dept.deptCode}",
-				deptName: "${dept.deptName}",
-				parDeptCode: <c:choose>
-								<c:when test="${empty dept.parDeptCode}"> null </c:when>
-								<c:otherwise> "${dept.parDeptCode}" </c:otherwise>
-							 </c:choose>
-			} <c:if test="${!status.last}">,</c:if>
-		</c:forEach>
-	];
-	
 	// 트리 생성 함수
 	function buildTree(parentCode, $container) {
 		const children = deptList.filter(d => d.parDeptCode == parentCode);

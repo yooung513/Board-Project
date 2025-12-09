@@ -1,7 +1,5 @@
 $(function() {
-	var user = "${sessionScope.user.name}";
-	var boardId = "${board.boardId }";
-	
+
 	$("#cancelBtn").click(function(){
 		location.href = '/board/' + boardId;
 	})

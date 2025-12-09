@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <title> 로그인 </title>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 </head>
 
@@ -48,5 +47,11 @@
 			<!-- <img class="kdn" src="https://github.com/yooung513/data-center/blob/main/images/kdn.png?raw=true"/> -->
 		</div>
 	</div>
+	
+	<script>
+		var result = '<c:out value="${result}" />';
+	</script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
 </body>
 </html>

@@ -14,7 +14,6 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/moment.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/daterangepicker.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </head>
 	
 <body>
@@ -96,5 +95,11 @@
 		    </div>
 		</div>
 	</div>
+	
+	<script>
+		var totalPages = ${pagination.totalPages};
+		var currentPage = ${pagination.currentPage};
+	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 </body>
 </html>

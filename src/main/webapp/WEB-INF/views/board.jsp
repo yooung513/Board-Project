@@ -9,7 +9,6 @@
 	<meta charset="UTF-8">
 	<title>게시글</title>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/board.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?after">
 </head>
 
@@ -86,5 +85,12 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		var boardId = "${board.boardId }";
+		var deptCode = '${sessionScope.user.deptCode}';
+		var rankCode = '${sessionScope.user.rankCode}';
+	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/board.js"></script>
 </body>
 </html>

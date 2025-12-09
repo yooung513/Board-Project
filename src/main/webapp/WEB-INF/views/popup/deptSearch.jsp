@@ -7,7 +7,6 @@
 		<meta charset="UTF-8">
 		<title>부서 검색</title>
 		<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/js/deptSearch.js"></script>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/deptSearch.css">
 	</head>
 
@@ -38,5 +37,21 @@
 			<input type="button" class="inputBtn" id="inputBtn" value="확 인" />
 		</div>
 	</div>
+	
+	<script>
+		const deptList = [
+			<c:forEach var="dept" items="${deptList }" varStatus="status">
+				{
+					deptCode: "${dept.deptCode}",
+					deptName: "${dept.deptName}",
+					parDeptCode: <c:choose>
+									<c:when test="${empty dept.parDeptCode}"> null </c:when>
+									<c:otherwise> "${dept.parDeptCode}" </c:otherwise>
+								 </c:choose>
+				} <c:if test="${!status.last}">,</c:if>
+			</c:forEach>
+		];
+	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/deptSearch.js"></script>
 </body>
 </html>

@@ -1,6 +1,3 @@
-var currentPage = 1;
-var totalPages = '${pagination.totalPages }';
-	
 $(function(){
 
 	// 글쓰기

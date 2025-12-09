@@ -8,7 +8,6 @@
 <meta charset="UTF-8">
 <title>게시글 생성</title>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/insert.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/insert.css">
 </head>
 
@@ -52,5 +51,10 @@
 			</form>
 		</div>
 	</div>
+	
+	<script>
+		var user = "${sessionScope.user.name}";
+	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/insert.js"></script>
 </body>
 </html>

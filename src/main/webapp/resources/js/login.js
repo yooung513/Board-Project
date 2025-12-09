@@ -1,5 +1,4 @@
 $(function(){
-	var result = '<c:out value="${result}" />';
 	
 	if(result == "false") {
 		alert("로그인 정보를 확인해주세요.");

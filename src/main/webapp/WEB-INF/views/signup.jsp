@@ -9,7 +9,6 @@
 	<title> 회원가입 </title>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/signup.css">
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/singup.js"></script>
 </head>
 
 <body>
@@ -114,5 +113,7 @@
 			</form>
 		</div>
 	</div>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/signup.js"></script>
 </body>
 </html>

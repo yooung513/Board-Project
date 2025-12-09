@@ -1,9 +1,4 @@
 $(function() {
-	var boardId = "${board.boardId }";
-	var deptCode = '${sessionScope.user.deptCode}';
-	var rankCode = '${sessionScope.user.rankCode}';
-	
-	
 	$("#updateBtn").click(function() {
 		location.href = '/update/' + boardId;
 	})

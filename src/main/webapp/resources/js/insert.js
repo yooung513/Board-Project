@@ -1,6 +1,4 @@
 $(function() {
-	var user = "${sessionScope.user.name}";
-	
 	$("#cancelBtn").click(function(){
 		location.href = '/';
 	})
