@@ -37,12 +37,31 @@ $(function(){
 		
 		var pwRegex = /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*+=-])(?=.*[0-9]).{9,15}$/;
 		if(!pwRegex.test(pw)) {
-			alert("비밀번호 형식이 다릅니다.");
+			alert("비밀번호가 다릅니다.");
 			$("#password").focus();
 			return;
 		}
 		
-		$("#loginFrm").attr("method", "post").attr("action", "/login").submit();
+		$.ajax({
+			url: "/login",
+			type: "POST",
+			data: {
+				kdnNumber: id,
+				password: pw
+			},
+			dataType: "text",
+			success: function (result) {
+				if (result === "success") {
+					location.href = "/";
+				} else {
+					alert("사번 또는 비밀번호가 올바르지 않습니다.");
+					$("#password").val("").focus();
+				}
+			},
+			error: function () {
+				alert("서버 오류가 발생했습니다.");
+			}
+		});
 	})
 	
 	

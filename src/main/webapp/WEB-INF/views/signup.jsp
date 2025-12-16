@@ -45,6 +45,12 @@
 				
 				<div class="inputBox">
 					<div class="requireBox"> * </div>
+					<label for="passwordCheck">비 밀 번 호 확 인</label>
+					<input type="password" id="passwordCheck" class="inputLong" />
+				</div>
+				
+				<div class="inputBox">
+					<div class="requireBox"> * </div>
 					<label for="name">이 름</label>
 					<input type="text" id="name" name="name" class="inputLong" />
 				</div>

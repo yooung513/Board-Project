@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" 
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
 	<meta charset="UTF-8">
 	<title>게시글</title>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.7.1.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css?after">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/board.css">
 </head>
 
 <body>
@@ -17,6 +18,10 @@
 	
 	<div class="container">
 		<div class="emptyContainer"></div>
+		
+		<div class="listContainer">
+			<input type="button" class="listBtn" id="listBtn" value="목 록">
+		</div>
 		
 		<div class="boardContainer">
 			<table>
@@ -59,7 +64,10 @@
 					<input type="hidden" name="userId" value="${sessionScope.user.userId }">
 					<input type="hidden" name="deptCode" value="${sessionScope.user.deptCode }">
 					<input type="hidden" name="rankCode" value="${sessionScope.user.rankCode }">
-					<textarea id="comment" class="cmtText" name="comment" placeholder="댓글을 입력하세요. (한글 200자)"></textarea>
+					<textarea id="comment" class="cmtText" name="comment" placeholder="댓글을 입력하세요. (한글 200자)" maxlength="200"></textarea>
+					<div class="cmtCounter">
+						<span id="currentCount">0</span> / 200자
+					</div>
 					<input type="button" class="cmtBtn" id="cmtBtn" value="등 록"> 
 				</form>
 			</div>

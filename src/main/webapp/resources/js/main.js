@@ -1,5 +1,37 @@
 $(function(){
 
+	var urlParams = new URLSearchParams(window.location.search);
+	var savedParams = sessionStorage.getItem('searchParams');
+	
+	var params = urlParams.toString() ? urlParams : (savedParams ? new URLSearchParams(savedParams) : null);
+	
+	if(params) {
+		if(params.get('sort')) {
+			$("#sortSel").val(params.get('sort'));
+		}
+		
+		if(params.get('keywordType')) {
+			$("#keywordType").val(params.get('keywordType'));
+		}
+		if(params.get('keyword')) {
+			$("#keyword").val(params.get('keyword'));
+		}
+		
+		if(params.get('dateRange')) {
+			$("#dateRange").val(params.get('dateRange'));
+		}
+		
+		if(params.get('page')) {
+			currentPage = parseInt(params.get('page'));
+		}
+		
+		searchBoard(currentPage);
+	} else {
+		renderPaging(totalPages, currentPage);
+	}
+
+	
+	
 	// 글쓰기
 	$("#writeBtn").click(function(){
 		location.href='insert';
@@ -8,6 +40,10 @@ $(function(){
 	// 게시글 이동
 	$(document).on("click", ".row-click", function() {
 		var boardId = $(this).data("id");
+		var searchParams = $("#searchFrm").serialize() + "&page=" + currentPage;
+		
+		sessionStorage.setItem('searchParams', searchParams);
+		
 		location.href = "/board/" + boardId;
 	});
 	
@@ -103,7 +139,9 @@ function renderBoardList(boardList, totalCount) {
 			var rowNum = totalCount - ((currentPage - 1) * 10) - index;
 			var date = board.displayDate.substring(0, 10);
 			
-			html += '<tr class="row-click" data-id="' + board.boardId + '">';
+			var isLastRow = (index === boardList.length - 1) ? 'last-row' : '';
+			
+			html += '<tr class="row-click ' + isLastRow + '" data-id="' + board.boardId + '">';
 			html += '<td class="tNum">' + rowNum + '</td>';
 			html += '<td class="tTitle">' + board.title + '</td>';
 			html += '<td class="tWriter">' + board.writer + '</td>';

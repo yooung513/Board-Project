@@ -36,35 +36,31 @@ public class LoginController {
 	
 	// 1. 유저 로그인
 	@PostMapping("/login")
-	public String login(HttpServletRequest request, HttpSession session, Model model) throws Exception {
+	@ResponseBody
+	public String login(@RequestParam String kdnNumber, @RequestParam String password, HttpSession session) throws Exception {
 		UserVO userVO = new UserVO();
 		
 		try {
-			String kdnNumber = request.getParameter("kdnNumber");
-			String password = request.getParameter("password");
 			
 			if("".equals(kdnNumber) || kdnNumber == null || "".equals(password) || password == null) {
 				// 유효성검사 (정규식)
 				//id.chars().allMatch(Character::isDigit)
-				model.addAttribute("result", false);
-				return "login";
+				return "fail";
 			}
 			
 			userVO = loginService.selectUserInfo(kdnNumber, password);
 			if(userVO == null) {
-				model.addAttribute("result", false);
-				return "login";
+				return "fail";
 			}
 		} catch (Exception e) {
 			
 			e.printStackTrace();
-			model.addAttribute("result", false);
-			return "login";
+			return "fail";
 		}
 		
 		session.setAttribute("user", userVO);
 		
-		return "redirect:/";
+		return "success";
 	}
 
 	

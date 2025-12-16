@@ -154,3 +154,18 @@
 		margin-top: 150px;
 	}
 	
+	
+	.infoContainer {
+		font-family: 'Paperozi400';
+		width: 1000px;
+		text-align: center; /* ✅ 우측 정렬 */
+		padding-right: 200px; /* ✅ signUpBox와 동일한 여백 */
+		margin-top: 20px; /* ✅ 상단 여백 */
+	}
+	
+	.info {
+		font-family: 'Paperozi400';
+		font-size: large;
+		color: rgb(73, 73, 72);
+		line-height: 1.5; /* ✅ 줄 간격 */
+	}

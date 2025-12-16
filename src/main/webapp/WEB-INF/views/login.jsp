@@ -40,6 +40,11 @@
 					<a href="/signup">회 원 가 입</a>
 				</div>
 			</div>
+			
+			<div class="infoContainer">
+				<a class="info"> 아이디 및 비밀번호 찾기는 관리자에게 연락하세요. </a> <br/>
+				<a class="info"> (061-931-5372) </a>
+			</div>
 		</div>
 		
 		<div class="imageContainer">

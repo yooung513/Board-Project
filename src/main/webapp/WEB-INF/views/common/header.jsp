@@ -41,6 +41,7 @@
 	.logo {
 		width: 300px;
 		height: auto;
+		cursor: pointer; /* ✅ 추가 */
 	}
 	
 	.userInfo {
@@ -81,7 +82,7 @@
 <body>
 	<div class="headerContainer">
 		<div class="logoWrapper">
-			<a href="/">
+			<a href="/" id="logoLink">
 				<img class="logo" src="${pageContext.request.contextPath}/resources/images/collaboration.png" />
 			</a>
 		</div>
@@ -95,7 +96,19 @@
 	</div>
 	
 	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var logoLink = document.getElementById('logoLink');
+			if(logoLink) {
+				logoLink.addEventListener('click', function(e) {
+					e.preventDefault();
+					sessionStorage.removeItem('searchParams');
+					window.location.href = '/';
+				});
+			}
+		});
+	
 		function logout() {
+			sessionStorage.removeItem('searchParams'); // ✅ 로그아웃 시에도 삭제
 			location.href = "/logout";
 		}
 	</script>

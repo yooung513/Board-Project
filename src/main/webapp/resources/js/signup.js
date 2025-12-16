@@ -11,11 +11,18 @@ $(function(){
 			return; 
 		}
 			
-		var idRegex = /^\d{6}$/;
-		if(!idRegex.test(kdnNum)) {
+		var idRegex1 = /^\d{6}$/;
+		if(!idRegex1.test(kdnNum)) {
 			alert("사번은 숫자 6자리 입니다.");
 			$("#kdnNumber").val("").focus();
 			return;
+		}
+		
+		var idRegex2 = /^(.)\1{5}$/;
+		if(idRegex2.test(kdnNum)) {
+			alert("동일한 숫자 여섯자리는 사용할 수 없습니다.");
+			$("#kdnNumber").val("").focus();
+			return;	
 		}
 			
 		$.ajax({
@@ -87,6 +94,18 @@ $(function(){
 			$("#password").focus();
 			return;
 		}
+		
+		if(!$("#passwordCheck").val()) {
+			alert("비밀번호 확인을 입력해주세요.");
+			$("#passwordCheck").focus();
+			return;
+		}
+		
+		if($("#password").val() != $("#passwordCheck").val()) {
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#passwordCheck").val("").focus();
+			return;
+		}
 			
 		if(!$("#name").val()) {
 			alert("이름을 입력해주세요."); $("#name").focus(); return;
@@ -113,13 +132,18 @@ $(function(){
 			$("#phone3").val("").focus();
 			return;
 		}
-			
+	
 		if(!$("#emailId").val()) {
 			alert("이메일을 입력해주세요."); $("#emailId").focus(); return;
 		}
 		
 		if(!$("#emailAdd").val()) {
 			alert("이메일을 입력해주세요.");	$("#emailAdd").focus(); return;
+		}
+		
+		var emailRegex = /^[A-Za-z0-9._-]+$/; 
+		if( !emailRegex.test($("#emailId").val()) ) {
+			alert("이메일 ID 형식이 다릅니다."); 	$("#emailId").val("").focus();  return;
 		}
 		
 		var formData = $("#signupFrm").serialize();
